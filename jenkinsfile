@@ -4,10 +4,10 @@ node {
 
      
   stage('Git-Checkout') {
-   git 'https://github.com/imbhascker13/bike.git'
+  sh 'git clone https://github.com/imbhascker13/bike.git'
   }
     
- def project_path="Bikes/"
+ def project_path="bike/Bikes/"
  
  dir(project_path) {
     
@@ -50,7 +50,7 @@ node {
   
   
 }
-   def docker_path="docker/"
+   def docker_path="bike/docker/"
  dir(docker_path) {
     stage('Download from Jfrog'){
         def server= Artifactory.server 'Artifactory'
@@ -67,11 +67,11 @@ node {
 }
   
     stage('Ansible-Checkout') {
-   git 'https://github.com/imbhascker13/Ansible.git'
+   sh 'git clone https://github.com/imbhascker13/Ansible.git'
   }
   
   
-   def ansible_path="ansible/"
+   def ansible_path="Ansible/ansible/"
   dir(ansible_path) {
        stage('Download from Jfrog'){
         def server= Artifactory.server 'Artifactory'
@@ -93,10 +93,10 @@ node {
    
  
    stage('Terraform-Checkout') {
-   git 'https://github.com/imbhascker13/Terraform.git'
+   sh 'git clone https://github.com/imbhascker13/Terraform.git'
   }
 
-def terraform_path="terraform/"
+def terraform_path="Terraform/terraform/"
 dir(terraform_path) {
    stage('Prod Deployment on AWS'){
    sh label: 'terraform', script: '/bin/terraform  init'
