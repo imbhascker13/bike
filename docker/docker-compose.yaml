@@ -5,4 +5,4 @@ services:
   bike-brands:
     build: . 
     ports:
-      - '8084:8080'
+      - '8083:8080'
