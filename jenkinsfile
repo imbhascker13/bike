@@ -4,6 +4,7 @@ node {
 
      
   stage('Git-Checkout') {
+  sh 'rm -rf bike'
   sh 'git clone https://github.com/imbhascker13/bike.git'
   }
     
@@ -67,6 +68,7 @@ node {
 }
   
     stage('Ansible-Checkout') {
+   sh 'rm -rf Ansible'
    sh 'git clone https://github.com/imbhascker13/Ansible.git'
   }
   
@@ -93,6 +95,7 @@ node {
    
  
    stage('Terraform-Checkout') {
+   sh 'rm -rf Terraform'
    sh 'git clone https://github.com/imbhascker13/Terraform.git'
   }
 
