@@ -2,6 +2,11 @@ node {
  try  {
  notify('Job Started') 
 
+ environment {
+    registry = "iambhascker13/mydocker"
+    registryCredential = 'docker'
+  }
+
      
   stage('Git-Checkout') {
   sh 'rm -rf bike'
@@ -66,7 +71,12 @@ node {
    sh label: '', script: 'docker-compose up -d --build'
   }
 }
-  
+    stage('Pushing DockerImage to DockerHub') {
+	  docker.withRegistry('', 'docker' ) {
+		    sh label: '', script: 'docker push iambhascker13/mydocker:$BUILD_NUMBER'
+		  }
+   
+  }
     stage('Ansible-Checkout') {
    sh 'rm -rf Ansible'
    sh 'git clone https://github.com/imbhascker13/Ansible.git'
