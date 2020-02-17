@@ -3,6 +3,8 @@ version: '2'
 
 services:
   bike-brands:
-    build: . 
+    build: .
+    image: iambhascker13/mydocker:$BUILD_NUMBER
+    comtainer_name: bike
     ports:
       - '8083:8080'
